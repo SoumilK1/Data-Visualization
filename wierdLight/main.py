@@ -25,16 +25,17 @@ def curve(x, t):
 def v(t, x):
     # velocity at any time (can be function of x)
     if (t < 10):
-        return np.array([c, -c/2, 0])
+        return np.array([c/8, -c, 0])
     else:
-        return np.array([c, c/2, 0])
+        return np.array([c/8, c, 0])
 
-
-# times of calculation of integral of v
-v_t = np.linspace(0, np.linalg.norm(B)/c + 30, 1000)
 
 # times of simulation
 t_eval = np.linspace(0, np.linalg.norm(B)/c + 30, 100)
+
+# times of calculation of integral of v
+v_t = np.linspace(t_eval[0], t_eval[-1], 3000)
+
 
 ### VALUES DEPENDENT ON CONSTANTS
 
@@ -79,7 +80,7 @@ def simulate(frame):
 
 
 # axis of the graph
-axis = [0, 30, -6, 13]
+axis = [0, 15, -6, 12]
 
 ax.axis(axis)
 anim = animation.FuncAnimation(fig, simulate, frames=len(t_eval), blit=True)
