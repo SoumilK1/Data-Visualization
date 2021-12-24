@@ -62,13 +62,14 @@ def f(x, y):
 
 
 def main():
-    n = 10
-    _x = np.linspace(0, 10, n)
-    _y = np.linspace(0, 10, n)
+    n = 100
+    _x = np.linspace(-10, 10, n)
+    _y = np.linspace(-10, 10, n)
 
     xx, yy = np.meshgrid(_x, _y, sparse=True)
     z = f(xx, yy)
 
+    # COLORMAP
     # plt.imshow(z, extent=(min(_x), max(_x), min(_y), max(_y)), origin="lower")
     #
     # plt.ylabel(r"$x$")
@@ -81,17 +82,23 @@ def main():
     #
     # plt.show()
 
-    distances = []
-    diff = []
+    # distances = []
+    # diff = []
+    #
+    # for i in range(n):
+    #     for j in range(n):
+    #         for x in range(n):
+    #             for y in range(n):
+    #                 distances.append(((_x[i] - _x[x])**2 + (_y[j] - _y[y])**2)**0.5)
+    #                 diff.append(abs(z[y, x] - z[j, i]))
+    #
+    # plt.scatter(distances, diff)
+    # plt.show()
 
-    for i in range(n):
-        for j in range(n):
-            for x in range(n):
-                for y in range(n):
-                    distances.append(((_x[i] - _x[x])**2 + (_y[j] - _y[y])**2)**0.5)
-                    diff.append(abs(z[y, x] - z[j, i]))
-
-    plt.scatter(distances, diff)
+    # 3D PLOT
+    plt.figure()
+    ax = plt.axes(projection='3d')
+    ax.plot_surface(xx, yy, z)
     plt.show()
 
 
